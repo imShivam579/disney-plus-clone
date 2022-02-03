@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import "./headerStyle.css";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <Nav>
-      <Logo src="/images/logo.svg" alt="brandLogo" />
+      <Link to="/">
+        <Logo src="/images/logo.svg" alt="brandLogo" />
+      </Link>
       <NavMenu>
         <a>
           <img src="/images/home-icon.svg" />
@@ -31,7 +34,7 @@ function Header() {
           <span>series</span>
         </a>
       </NavMenu>
-      <UserImg src="" alt="userImg" />
+      <UserImg src="/images/user-profile.png" alt="userImg" />
     </Nav>
   );
 }
@@ -89,8 +92,8 @@ const NavMenu = styled.div`
   }
 `;
 const UserImg = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
 `;
