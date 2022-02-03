@@ -3,7 +3,7 @@ import styled from "styled-components";
 function Movie() {
   return (
     <Container>
-      <h4>Recommended for You</h4>
+      <h3>Recommended for You</h3>
       <Content>
         <Wrap>
           <img src="/images/viewers-national.png" alt="" />
@@ -28,7 +28,6 @@ const Content = styled.div`
   display: grid;
   grid-gap: 25px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  //   margin-top: 30px;
   padding: 30px 0 26px;
 `;
 
