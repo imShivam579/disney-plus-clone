@@ -2,7 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import "./headerStyle.css";
 import { Link } from "react-router-dom";
+import { auth, provider } from "../../firebase";
 function Header() {
+  const handleAuth = () => {
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
   return (
     <Nav>
       <Link to="/">
@@ -34,7 +45,11 @@ function Header() {
           <span>series</span>
         </a>
       </NavMenu>
-      <UserImg src="/images/user-profile.png" alt="userImg" />
+      {/* <UserImg
+        src="/images/user-profile.png"
+        alt="userImg"
+      /> */}
+      <Login onClick={handleAuth}>Login</Login>
     </Nav>
   );
 }
@@ -96,4 +111,21 @@ const UserImg = styled.img`
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
+`;
+const Login = styled.a`
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 8px 16px;
+  text-transfrom: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid #f9f9f9;
+  border-radius: 4px;
+  transition: all 250ms ease-out;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background: #f9f9f9;
+    color: #000;
+  }
 `;
