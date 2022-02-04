@@ -1,13 +1,30 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import db from "../firebase";
 function Detail() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState();
+  useEffect(() => {
+    //Grab the movie info from DB
+    db.collection("movies")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setMovie(doc.data());
+        } else {
+          //redirect to home page
+        }
+      });
+  }, []);
   return (
     <Container>
       <Background>
-        <img src="/images/BgTrial.jpg" alt="movieImg" />
+        <img src={movie?.backgroundImg} alt="movieImg" />
       </Background>
       <ImageTitle>
-        <img src="/images/scale.png" alt="" />
+        <img src={movie?.titleImg} alt="" />
       </ImageTitle>
       <Controls>
         <PlayButton>
@@ -25,13 +42,8 @@ function Detail() {
           <img src="/images/group-icon.png" alt="" />
         </GroupWatchButton>
       </Controls>
-      <SubTitle>2018 . 7m . Family, Fantasy, kids, Aniation</SubTitle>
-      <Description>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae minus,
-        hic eaque, doloremque officia est dolorem deserunt alias quidem
-        reiciendis totam asperiores, ad esse eos illum iusto officiis maiores
-        pariatur.
-      </Description>
+      <SubTitle>{movie?.subTitle}</SubTitle>
+      <Description>{movie?.description}</Description>
     </Container>
   );
 }
