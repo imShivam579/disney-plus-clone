@@ -29,6 +29,9 @@ const Content = styled.div`
   grid-gap: 25px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   padding: 30px 0 26px;
+  @media (max-width: 786px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 `;
 
 const Wrap = styled.div`

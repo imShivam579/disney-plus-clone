@@ -91,7 +91,9 @@ function Header() {
               <span>series</span>
             </a>
           </NavMenu>
-          <UserImg src={userPhoto} alt="userImg" onClick={signOut} />
+          <SignOut>
+            <UserImg onClick={signOut} src={userPhoto} alt="userImg" />
+          </SignOut>
         </>
       )}
     </Nav>
@@ -106,7 +108,13 @@ const Nav = styled.nav`
   align-items: center;
   padding: 0 36px;
   overflow-x: hidden;
-  justifly-content: space-between;
+  justify-content: space-between;
+  positon: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  letter-spacing: 16px;
+  z-index: 3;
 `;
 const Logo = styled.img`
   width: 80px;
@@ -116,7 +124,9 @@ const NavMenu = styled.div`
   flex: 1;
   margin-left: 25px;
   align-items: center;
-
+  flex-flow: row nowrap;
+  height: 100%;
+  margin-right: auto;
   @media (max-width: 867px) {
     display: none;
   }
@@ -156,8 +166,8 @@ const NavMenu = styled.div`
   }
 `;
 const UserImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   cursor: pointer;
 `;
@@ -182,4 +192,12 @@ const LoginContainer = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-end;
+`;
+const SignOut = styled.div`
+  position: relative;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
